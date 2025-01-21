@@ -1,33 +1,51 @@
-import { useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
-import DetailNews from "../../components/DetailNews/DetailNews";
-import Footer from "../../components/Footer/Footer";
+import { useState, useEffect } from "react";
+import {
+  createFileRoute,
+  useNavigate,
+  useSearch,
+} from "@tanstack/react-router";
 import Navbar from "../../components/Navbar/Navbar";
+import DetailNews from "../../components/DetailNews/DetailNews";
+import Terkait from "../../components/Popular/Terkait";
+import Footer from "../../components/Footer/Footer";
 
 export const Route = createFileRoute("/news/$id")({
+  validateSearch: (search) => {
+    return {
+      title: search.title,
+      thumbnail: search.thumbnail,
+      pubDate: search.pubDate,
+      description: search.description,
+      category: search.category,
+    };
+  },
   component: RouteComponent,
 });
 
 function RouteComponent() {
   const [newsType, setNewsType] = useState("terbaru");
+  const navigate = useNavigate();
+  const search = useSearch({ from: "/news/$id" });
 
-  const search = new URLSearchParams(location.search);
-  const title = search.get("title");
-  if (!title) {
-    return <div>Data tidak ditemukan</div>;
+  if (!search.title) {
+    navigate({ to: "/" });
+    return null;
   }
 
   const newsData = {
-    title: title,
-    thumbnail: search.get("thumbnail"),
-    pubDate: search.get("pubDate"),
-    description: search.get("description"),
+    title: search.title,
+    thumbnail: search.thumbnail,
+    pubDate: search.pubDate,
+    description: search.description,
+    category: search.category || "Berita",
   };
 
+  
   return (
     <>
       <Navbar setNewsType={setNewsType} newsType={newsType} />
       <DetailNews newsData={newsData} />
+      <Terkait newsData={newsData} />
       <Footer />
     </>
   );

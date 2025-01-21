@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { getTerbaru } from "../../services/News/News";
 
-const DetailPopularNews = () => {
+const Terkait = () => {
   const { data, isSuccess, isLoading, isError } = useQuery({
     queryKey: ["getTerbaru"],
     queryFn: getTerbaru,
@@ -20,13 +20,12 @@ const DetailPopularNews = () => {
     return <div>Terjadi kesalahan saat memuat data.</div>;
   }
   const randomNews = getRandomNews();
-
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto px-4 py-20">
       <h2 className="text-xl font-bold border-l-4 border-blue-500 pl-2 mb-6">
-        Berita Terpopuler
+        Berita Terkait
       </h2>
-      <div className="flex flex-col space-y-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {randomNews.map((news, index) => (
           <Link
             key={news.title}
@@ -41,24 +40,19 @@ const DetailPopularNews = () => {
             }}
             className="block hover:shadow-lg transition-shadow duration-200"
           >
-            <div key={news.id} className="flex items-start space-x-4">
+            <div className="flex items-start space-x-4 bg-white rounded-lg shadow-md overflow-hidden p-4">
               <div className="relative">
-                <div className="aspect-w-1 aspect-h-1 w-20 h-20">
-                  <img
-                    src={news.thumbnail}
-                    alt={news.title}
-                    className="rounded-lg object-cover w-full h-full"
-                  />
-                </div>
-                <span className="absolute top-1 left-1 bg-blue-900 text-white text-sm w-6 h-6 rounded-full flex items-center justify-center">
+                <img
+                  src={news.thumbnail}
+                  alt={news.title}
+                  className="rounded-lg w-48 h-32 object-cover"
+                />
+                <span className="absolute top-0 left-0 bg-blue-900 text-white text-sm w-6 h-6 rounded-full flex items-center justify-center">
                   {index + 1}
                 </span>
               </div>
-              <div>
-                <span
-                  href="#"
-                  className="text-blue-500 text-sm font-medium hover:underline"
-                >
+              <div className="flex-1">
+                <span className="text-blue-500 text-sm font-medium">
                   {news.category}
                 </span>
                 <h3 className="text-sm font-semibold text-gray-800 leading-tight mt-1">
@@ -80,4 +74,4 @@ const DetailPopularNews = () => {
   );
 };
 
-export default DetailPopularNews;
+export default Terkait;
