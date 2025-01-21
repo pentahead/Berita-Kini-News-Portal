@@ -1,0 +1,86 @@
+import DetailPopularNews from "../Popular/DetailPopularNews";
+import Comment from "../Comment/Comment";
+
+function DetailNews({ newsData }) {
+  if (!newsData) return <div>Berita tidak ditemukan</div>;
+  return (
+    <>
+      <div className="max-w-7xl mx-auto px-4 py-8">
+
+        <nav className="flex mb-8" aria-label="Breadcrumb">
+          <ol className="inline-flex items-center space-x-2">
+            <li className="inline-flex items-center">
+              <a href="/" className="text-gray-600 hover:text-blue-500">
+                Beranda
+              </a>
+            </li>
+            <li className="flex items-center">
+              <span className="mx-2 text-gray-400">/</span>
+              <a href="/nasional" className="text-gray-600 hover:text-blue-500">
+                {newsData.category}
+              </a>
+            </li>
+            <li className="flex items-center">
+              <span className="mx-2 text-gray-400">/</span>
+              <span className="text-gray-800">Detail</span>
+            </li>
+          </ol>
+        </nav>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2">
+            <article>
+              <h1 className="text-3xl font-bold text-gray-900 mb-4">
+                {newsData.title}
+              </h1>
+              <div className="flex items-center space-x-4 text-sm text-gray-500 mb-6">
+                <span>{newsData.category}</span>
+                <span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    class="size-4"
+                  >
+                    <path d="M5.75 7.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5ZM5 10.25a.75.75 0 1 1 1.5 0 .75.75 0 0 1-1.5 0ZM10.25 7.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5ZM7.25 8.25a.75.75 0 1 1 1.5 0 .75.75 0 0 1-1.5 0ZM8 9.5A.75.75 0 1 0 8 11a.75.75 0 0 0 0-1.5Z" />
+                    <path
+                      fill-rule="evenodd"
+                      d="M4.75 1a.75.75 0 0 0-.75.75V3a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2V1.75a.75.75 0 0 0-1.5 0V3h-5V1.75A.75.75 0 0 0 4.75 1ZM3.5 7a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v4.5a1 1 0 0 1-1 1h-7a1 1 0 0 1-1-1V7Z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </span>
+                <span>
+                  {new Date(newsData.pubDate).toLocaleDateString("id-ID", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </span>
+              </div>
+              <img
+                src={newsData.thumbnail}
+                alt={newsData.title}
+                className="w-full h-[400px] object-cover rounded-lg mb-6"
+              />
+              <div className="prose max-w-none">
+                <p className="text-gray-700 leading-relaxed">
+                  {newsData.description}
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <div className="lg:col-span-1 w-full">
+            <div className="max-w-sm">
+              <DetailPopularNews />
+            </div>
+          </div>
+        </div>
+      <Comment />
+      </div>
+    </>
+  );
+}
+
+export default DetailNews;
