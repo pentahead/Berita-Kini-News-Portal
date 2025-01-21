@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import DetailPopularNews from "../Popular/DetailPopularNews";
 import Comment from "../Comment/Comment";
 
@@ -5,20 +6,32 @@ function DetailNews({ newsData }) {
   if (!newsData) return <div>Berita tidak ditemukan</div>;
   return (
     <>
-      <div className="max-w-7xl mx-auto px-4 py-8">
-
+      <div className="max-w-7xl mx-auto px-4 py-20">
         <nav className="flex mb-8" aria-label="Breadcrumb">
           <ol className="inline-flex items-center space-x-2">
             <li className="inline-flex items-center">
-              <a href="/" className="text-gray-600 hover:text-blue-500">
+              <Link href="/" className="text-gray-600 hover:text-blue-500 flex space-x-2 items-center">
+                <span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    class="size-4"
+                  >
+                    <path d="M8.543 2.232a.75.75 0 0 0-1.085 0l-5.25 5.5A.75.75 0 0 0 2.75 9H4v4a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1a1 1 0 1 1 2 0v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V9h1.25a.75.75 0 0 0 .543-1.268l-5.25-5.5Z" />
+                  </svg>
+                </span>
+                <span>
+
                 Beranda
-              </a>
+                </span>
+              </Link>
             </li>
             <li className="flex items-center">
               <span className="mx-2 text-gray-400">/</span>
-              <a href="/nasional" className="text-gray-600 hover:text-blue-500">
+              <Link href="/" className="text-gray-600 hover:text-blue-500">
                 {newsData.category}
-              </a>
+              </Link>
             </li>
             <li className="flex items-center">
               <span className="mx-2 text-gray-400">/</span>
@@ -33,8 +46,8 @@ function DetailNews({ newsData }) {
               <h1 className="text-3xl font-bold text-gray-900 mb-4">
                 {newsData.title}
               </h1>
-              <div className="flex items-center space-x-4 text-sm text-gray-500 mb-6">
-                <span>{newsData.category}</span>
+              <div className="flex items-center space-x-2 text-sm text-gray-500 mb-6">
+                <span>{newsData.category || "category"}</span>
                 <span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +90,7 @@ function DetailNews({ newsData }) {
             </div>
           </div>
         </div>
-      <Comment />
+        <Comment />
       </div>
     </>
   );

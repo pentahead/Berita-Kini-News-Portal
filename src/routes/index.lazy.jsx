@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar/Navbar";
 import HeroSection from "../components/Hero/Hero";
 import PopularNews from "../components/Popular/Popular";
 import Recommendations from "../components/Recommendation/Recommendation";
+import Carousel from "../components/Carousel/Carousel";
 import Footer from "../components/Footer/Footer";
 import {
   getTerbaru,
@@ -21,7 +22,6 @@ export const Route = createLazyFileRoute("/")({
 
 function Index() {
   const [newsType, setNewsType] = useState("terbaru");
-
 
   const fetchNews = () => {
     switch (newsType) {
@@ -56,9 +56,10 @@ function Index() {
   return (
     <>
       <Navbar setNewsType={setNewsType} newsType={newsType} />
-      <HeroSection />
+      <HeroSection newsData={data?.data?.posts || []} />
       <PopularNews newsData={data?.data?.posts || []} />
-      <Recommendations />
+      <Recommendations newsData={data?.data?.posts || []} />
+      <Carousel />
       <Footer />
     </>
   );
