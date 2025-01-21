@@ -6,7 +6,6 @@ import { useNavigate, Link } from "@tanstack/react-router";
 export default function Navbar({ setNewsType, newsType }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
-
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
