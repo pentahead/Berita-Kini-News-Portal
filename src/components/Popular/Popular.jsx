@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 
-const PopularNews = ({ newsData }) => {
+const PopularNews = ({ newsData, newsType }) => {
   const getRandomNews = () => {
     if (!newsData || !newsData) return [];
     const shuffled = [...newsData].sort(() => 0.5 - Math.random());
@@ -31,6 +31,7 @@ const PopularNews = ({ newsData }) => {
               thumbnail: news.thumbnail,
               pubDate: news.pubDate,
               description: news.description,
+              newsType: newsType,
             }}
             className="block hover:shadow-lg transition-shadow duration-200"
           >
@@ -55,13 +56,19 @@ const PopularNews = ({ newsData }) => {
                 <h3 className="text-sm font-semibold text-gray-800 leading-tight mt-1">
                   {news.title}
                 </h3>
-                <p className="text-xs text-gray-500 mt-2">
-                  {new Date(news.pubDate).toLocaleDateString("id-ID", {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  })}
-                </p>
+                <div className="flex space-x-2 items-center inset-x-0 bottom-0 ">
+                  <span className="text-sm font-bold text-blue-500">
+                    {newsType.charAt(0).toUpperCase() + newsType.slice(1)}
+                  </span>
+                  <span>•</span>
+                  <p className="text-xs text-gray-500">
+                    {new Date(news.pubDate).toLocaleDateString("id-ID", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </p>
+                </div>
               </div>
             </div>
           </Link>

@@ -16,14 +16,14 @@ export const Route = createFileRoute("/news/$id")({
       thumbnail: search.thumbnail,
       pubDate: search.pubDate,
       description: search.description,
-      category: search.category,
+      newsType: search.newsType,
     };
   },
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const [newsType, setNewsType] = useState("terbaru");
+  // const [newsType, setNewsType] = useState("terbaru");
   const navigate = useNavigate();
   const search = useSearch({ from: "/news/$id" });
 
@@ -37,13 +37,15 @@ function RouteComponent() {
     thumbnail: search.thumbnail,
     pubDate: search.pubDate,
     description: search.description,
-    category: search.category || "Berita",
+    newsType: search.newsType || "Berita",
   };
 
   
   return (
     <>
-      <Navbar setNewsType={setNewsType} newsType={newsType} />
+      <Navbar 
+      // setNewsType={setNewsType} 
+      newsType={newsData.newsType} />
       <DetailNews newsData={newsData} />
       <Terkait newsData={newsData} />
       <Footer />

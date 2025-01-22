@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const HeroSection = ({ newsData }) => {
+const HeroSection = ({ newsData, newsType }) => {
   const getRandomNews = () => {
     if (!newsData || !newsData) return [];
     const shuffled = [...newsData].sort(() => 0.5 - Math.random());
@@ -37,8 +37,8 @@ const HeroSection = ({ newsData }) => {
                 thumbnail: news.thumbnail,
                 pubDate: news.pubDate,
                 description: news.description,
+                newsType: newsType,
               }}
-              
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center hover:bg-gray-100">
                 <div className="p-6">
@@ -50,6 +50,11 @@ const HeroSection = ({ newsData }) => {
                   </h2>
                   <p className="text-gray-700 mb-4">{news.description}</p>
                   <p className="text-gray-500 text-sm mb-4 flex items-center space-x-2">
+                    <span className="text-sm font-bold text-blue-500">
+                      {newsType.charAt(0).toUpperCase() + newsType.slice(1)}
+                    </span>
+                    <span>•</span>
+
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"

@@ -61,9 +61,9 @@ function Index() {
   return (
     <>
       <Navbar setNewsType={setNewsType} newsType={newsType} />
-      <HeroSection newsData={data?.data?.posts || []} />
-      <PopularNews newsData={data?.data?.posts || []} />
-      <Recommendations newsData={data?.data?.posts || []} />
+      <HeroSection newsData={data?.data?.posts || []} newsType={newsType} />
+      <PopularNews newsData={data?.data?.posts || []} newsType={newsType} />
+      <Recommendations newsData={data?.data?.posts || []} newsType={newsType} />
       <Carousel />
       <Footer />
     </>

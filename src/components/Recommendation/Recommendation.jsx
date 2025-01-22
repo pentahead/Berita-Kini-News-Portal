@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 
-const Recommendations = ({ newsData }) => {
+const Recommendations = ({ newsData, newsType }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchKeyword, setSearchKeyword] = useState("");
   const itemsPerPage = 8;
@@ -83,6 +83,7 @@ const Recommendations = ({ newsData }) => {
               thumbnail: news.thumbnail,
               pubDate: news.pubDate,
               description: news.description,
+              newsType: newsType,
             }}
             className="block hover:shadow-lg transition-shadow duration-200"
           >
@@ -94,17 +95,23 @@ const Recommendations = ({ newsData }) => {
                   className="w-full h-32 object-cover"
                 />
               </div>
-              <div className="p-4 flex flex-col flex-grow">
+              <div className="p-4 flex flex-col flex-grow ">
                 <h3 className="text-sm font-semibold text-gray-800 line-clamp-2 leading-tight">
                   {news.title}
                 </h3>
-                <p className="text-xs text-gray-500 mt-auto">
-                  {new Date(news.pubDate).toLocaleDateString("id-ID", {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  })}
-                </p>
+                <div className="flex space-x-2 items-center mt-auto">
+                  <span className="text-sm font-bold text-blue-500">
+                    {newsType.charAt(0).toUpperCase() + newsType.slice(1)}
+                  </span>
+                  <span>•</span>
+                  <p className="text-xs text-gray-500">
+                    {new Date(news.pubDate).toLocaleDateString("id-ID", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </p>
+                </div>
               </div>
             </div>
           </Link>

@@ -35,7 +35,9 @@ function DetailNews({ newsData }) {
             <li className="flex items-center">
               <span className="mx-2 text-gray-400">/</span>
               <Link href="/" className="text-gray-600 hover:text-blue-500">
-                {newsData.category}
+                {newsData.newsType &&
+                  newsData.newsType.charAt(0).toUpperCase() +
+                    newsData.newsType.slice(1)}
               </Link>
             </li>
             <li className="flex items-center">
@@ -52,7 +54,12 @@ function DetailNews({ newsData }) {
                 {newsData.title}
               </h1>
               <div className="flex items-center space-x-2 text-sm text-gray-500 mb-6">
-                <span>{newsData.category || "category"}</span>
+                <span className="text-sm font-bold text-blue-500">
+                  {newsData.newsType &&
+                    newsData.newsType.charAt(0).toUpperCase() +
+                      newsData.newsType.slice(1)}
+                </span>
+
                 <span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
