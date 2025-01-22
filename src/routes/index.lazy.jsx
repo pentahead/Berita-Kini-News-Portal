@@ -1,6 +1,7 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { ThemeProvider } from "../context/ThemeContext";
 import Navbar from "../components/Navbar/Navbar";
 import HeroSection from "../components/Hero/Hero";
 import PopularNews from "../components/Popular/Popular";
@@ -18,7 +19,11 @@ import {
 } from "../services/News/News";
 
 export const Route = createLazyFileRoute("/")({
-  component: () => <Index />,
+  component: () => (
+    <ThemeProvider>
+      <Index />
+    </ThemeProvider>
+  ),
 });
 
 function Index() {
@@ -59,14 +64,14 @@ function Index() {
   }
 
   return (
-    <>
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
       <Navbar setNewsType={setNewsType} newsType={newsType} />
       <HeroSection newsData={data?.data?.posts || []} newsType={newsType} />
       <PopularNews newsData={data?.data?.posts || []} newsType={newsType} />
       <Recommendations newsData={data?.data?.posts || []} newsType={newsType} />
       <Carousel />
       <Footer />
-    </>
+    </div>
   );
 }
 

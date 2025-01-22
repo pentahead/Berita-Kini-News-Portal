@@ -5,7 +5,7 @@ import Comment from "../Comment/Comment";
 function DetailNews({ newsData }) {
   if (!newsData)
     return (
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center dark:text-gray-200">
         Berita tidak ditemukan
       </div>
     );
@@ -17,7 +17,7 @@ function DetailNews({ newsData }) {
             <li className="inline-flex items-center">
               <Link
                 href="/"
-                className="text-gray-600 hover:text-blue-500 flex space-x-2 items-center"
+                className="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 flex space-x-2 items-center"
               >
                 <span>
                   <svg
@@ -33,16 +33,16 @@ function DetailNews({ newsData }) {
               </Link>
             </li>
             <li className="flex items-center">
-              <span className="mx-2 text-gray-400">/</span>
-              <Link href="/" className="text-gray-600 hover:text-blue-500">
+              <span className="mx-2 text-gray-400 dark:text-gray-600">/</span>
+              <Link href="/" className="text-gray-600 dark:text-gray-600 hover:text-blue-500 dark:hover:text-blue-400">
                 {newsData.newsType &&
                   newsData.newsType.charAt(0).toUpperCase() +
                     newsData.newsType.slice(1)}
               </Link>
             </li>
             <li className="flex items-center">
-              <span className="mx-2 text-gray-400">/</span>
-              <span className="text-gray-800">Detail</span>
+              <span className="mx-2 text-gray-400 dark:text-gray-600">/</span>
+              <span className="text-gray-800 dark:text-gray-200">Detail</span>
             </li>
           </ol>
         </nav>
@@ -50,11 +50,11 @@ function DetailNews({ newsData }) {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <article>
-              <h1 className="text-3xl font-bold text-gray-900 mb-4">
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
                 {newsData.title}
               </h1>
-              <div className="flex items-center space-x-2 text-sm text-gray-500 mb-6">
-                <span className="text-sm font-bold text-blue-500">
+              <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400 mb-6">
+                <span className="text-sm font-bold text-blue-500 dark:text-blue-400">
                   {newsData.newsType &&
                     newsData.newsType.charAt(0).toUpperCase() +
                       newsData.newsType.slice(1)}
@@ -88,8 +88,8 @@ function DetailNews({ newsData }) {
                 alt={newsData.title}
                 className="w-full h-[400px] object-cover rounded-lg mb-6"
               />
-              <div className="prose max-w-none">
-                <p className="text-gray-700 leading-relaxed">
+              <div className="prose dark:prose-invert max-w-none">
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                   {newsData.description}
                 </p>
               </div>

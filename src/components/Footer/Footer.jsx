@@ -3,7 +3,7 @@ import logo from "../../assets/logo-white.svg";
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-800 text-white py-12 px-6">
+    <footer className="bg-slate-800 dark:bg-gray-800 text-white py-12 px-6">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
@@ -158,7 +158,7 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="Masukan email"
-                className="px-4 py-2 rounded-l-md text-gray-800 w-full"
+                className="px-4 py-2 rounded-l-md text-gray-800 dark:text-white dark:bg-gray-700 w-full"
               />
               <button
                 className="bg-blue-500 px-4 py-2 rounded-r-md hover:bg-blue-600"

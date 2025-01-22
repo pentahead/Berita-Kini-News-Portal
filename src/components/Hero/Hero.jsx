@@ -14,7 +14,7 @@ const HeroSection = ({ newsData, newsType }) => {
   const randomNews = getRandomNews();
   if (!randomNews.length) return <div>Tidak ada berita untuk ditampilkan.</div>;
   return (
-    <section className="py-8 my-10">
+    <section className="py-8 my-10 dark:bg-gray-900">
       <Swiper
         modules={[Navigation, Pagination]}
         spaceBetween={50}
@@ -40,15 +40,15 @@ const HeroSection = ({ newsData, newsType }) => {
                 newsType: newsType,
               }}
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center hover:bg-gray-100">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center hover:bg-gray-100 dark:hover:bg-gray-800">
                 <div className="p-6">
-                  <h2 className="text-sm text-blue-500 font-small mb-2">
+                  <h2 className="text-sm text-blue-500 dark:text-blue-400 font-small mb-2">
                     Headline
                   </h2>
-                  <h2 className="text-2xl md:text-3xl font-medium mb-4">
+                  <h2 className="text-2xl md:text-3xl font-medium mb-4 dark:text-white">
                     {news.title}
                   </h2>
-                  <p className="text-gray-700 mb-4">{news.description}</p>
+                  <p className="text-gray-700 dark:text-gray-300 mb-4">{news.description}</p>
                   <p className="text-gray-500 text-sm mb-4 flex items-center space-x-2">
                     <span className="text-sm font-bold text-blue-500">
                       {newsType.charAt(0).toUpperCase() + newsType.slice(1)}
@@ -69,7 +69,7 @@ const HeroSection = ({ newsData, newsType }) => {
                       />
                     </svg>
 
-                    <span>
+                    <span className="dark:text-gray-300">
                       {new Date(news.pubDate).toLocaleDateString("id-ID", {
                         day: "numeric",
                         month: "long",
@@ -100,7 +100,7 @@ const HeroSection = ({ newsData, newsType }) => {
       {/* Tombol Navigasi */}
       <div className="flex justify-center space-x-4 mt-0">
         <button
-          className="custom-prev text-gray-700 bg-gray-300 hover:bg-gray-400 rounded-full w-8 h-8 flex items-center justify-center"
+          className="custom-prev text-gray-700 bg-gray-300 hover:bg-gray-400 dark:text-white dark:bg-gray-700 dark:hover:bg-gray-400 rounded-full w-8 h-8 flex items-center justify-center"
           aria-label="Previous Slide"
         >
           <svg
@@ -117,7 +117,7 @@ const HeroSection = ({ newsData, newsType }) => {
           </svg>
         </button>
         <button
-          className="custom-next text-gray-700 bg-gray-300 hover:bg-gray-400 rounded-full w-8 h-8 flex items-center justify-center"
+          className="custom-next text-gray-700 bg-gray-300 hover:bg-gray-400 dark:text-white dark:bg-gray-700 dark:hover:bg-gray-400 rounded-full w-8 h-8 flex items-center justify-center"
           aria-label="Next Slide"
         >
           <svg

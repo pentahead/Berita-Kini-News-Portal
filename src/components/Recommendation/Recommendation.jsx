@@ -41,9 +41,9 @@ const Recommendations = ({ newsData, newsType }) => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <section className="max-w-7xl mx-auto px-4 py-8 dark:bg-gray-900">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-bold border-l-4 border-blue-500 pl-2">
+        <h2 className="text-xl font-bold border-l-4 border-blue-500 pl-2 dark:text-white">
           Rekomendasi Untuk Anda
         </h2>
         <div className="relative">
@@ -52,7 +52,7 @@ const Recommendations = ({ newsData, newsType }) => {
             value={searchKeyword}
             onChange={handleSearch}
             placeholder="Cari disini..."
-            className="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="border border-gray-300 dark:text-white dark:bg-gray-700 dark:border-gray-600 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
           />
           <span className="absolute inset-y-0 right-4 flex items-center text-gray-400">
             <svg
@@ -87,7 +87,7 @@ const Recommendations = ({ newsData, newsType }) => {
             }}
             className="block hover:shadow-lg transition-shadow duration-200"
           >
-            <div className="bg-white rounded-lg shadow-md overflow-hidden h-64 flex flex-col">
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden h-64 flex flex-col">
               <div className="w-full h-32 overflow-hidden">
                 <img
                   src={news.thumbnail}
@@ -96,7 +96,7 @@ const Recommendations = ({ newsData, newsType }) => {
                 />
               </div>
               <div className="p-4 flex flex-col flex-grow ">
-                <h3 className="text-sm font-semibold text-gray-800 line-clamp-2 leading-tight">
+                <h3 className="text-sm font-semibold text-gray-800 dark:text-white line-clamp-2 leading-tight">
                   {news.title}
                 </h3>
                 <div className="flex space-x-2 items-center mt-auto">
@@ -104,7 +104,7 @@ const Recommendations = ({ newsData, newsType }) => {
                     {newsType.charAt(0).toUpperCase() + newsType.slice(1)}
                   </span>
                   <span>•</span>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
                     {new Date(news.pubDate).toLocaleDateString("id-ID", {
                       day: "numeric",
                       month: "long",
@@ -128,7 +128,7 @@ const Recommendations = ({ newsData, newsType }) => {
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
-            className="px-3 py-1 text-gray-600 hover:bg-gray-200 hover:text-blue-500 disabled:text-gray-400"
+            className="px-3 py-1 text-gray-600 hover:bg-gray-200 hover:text-blue-500 disabled:text-gray-400 dark:text-white dark:hover:text-white dark:hover:bg-gray-800 dark:disabled:text-gray-600"
           >
             ← Previous
           </button>
@@ -155,8 +155,8 @@ const Recommendations = ({ newsData, newsType }) => {
                 className={`w-8 h-8 flex items-center justify-center rounded-md
                   ${
                     currentPage === pageNumber
-                      ? "bg-blue-800 text-white"
-                      : "text-gray-600 hover:text-blue-500 hover:bg-gray-200"
+                      ? "bg-blue-800 text-white dark:text-white dark:bg-gray-700"
+                      : "text-gray-600 hover:text-blue-500 hover:bg-gray-200 dark:text-gray-600 dark:hover:text-gray-600 dark:hover:bg-gray-200"
                   }`}
               >
                 {pageNumber}
@@ -167,13 +167,13 @@ const Recommendations = ({ newsData, newsType }) => {
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
-            className="px-3 py-1 text-gray-600 hover:text-blue-500 disabled:text-gray-400"
+            className="px-3 py-1 text-gray-600 hover:bg-gray-200 hover:text-blue-500 disabled:text-gray-400 dark:text-white dark:hover:text-white dark:hover:bg-gray-800 dark:disabled:text-gray-600"
           >
             Next →
           </button>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { ThemeProvider } from "../../context/ThemeContext";
 import {
   createFileRoute,
   useNavigate,
@@ -19,7 +20,11 @@ export const Route = createFileRoute("/news/$id")({
       newsType: search.newsType,
     };
   },
-  component: RouteComponent,
+  component: () => (
+    <ThemeProvider>
+      <RouteComponent />
+    </ThemeProvider>
+  ),
 });
 
 function RouteComponent() {
@@ -40,15 +45,15 @@ function RouteComponent() {
     newsType: search.newsType || "Berita",
   };
 
-  
   return (
-    <>
-      <Navbar 
-      // setNewsType={setNewsType} 
-      newsType={newsData.newsType} />
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+      <Navbar
+        // setNewsType={setNewsType}
+        newsType={newsData.newsType}
+      />
       <DetailNews newsData={newsData} />
       <Terkait newsData={newsData} />
       <Footer />
-    </>
+    </div>
   );
 }
