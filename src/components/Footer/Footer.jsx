@@ -1,7 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import logo from "../../assets/logo-white.svg";
 
-const Footer = () => {
+const Footer = ({ setNewsType }) => {
+  const handleNavClick = (type) => {
+    setNewsType(type);
+  };
   return (
     <footer className="bg-slate-800 dark:bg-gray-800 text-white py-12 px-6">
       <div className="container mx-auto">
@@ -91,41 +94,25 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Telusuri</h3>
             <ul className="space-y-2">
-              <li>
-                <Link to="/" className="hover:text-blue-400">
-                  Beranda
-                </Link>
-              </li>
-              <li>
-                <Link to="/kesehatan" className="hover:text-blue-400">
-                  Kesehatan
-                </Link>
-              </li>
-              <li>
-                <Link to="/otomotif" className="hover:text-blue-400">
-                  Otomotif
-                </Link>
-              </li>
-              <li>
-                <Link to="/politik" className="hover:text-blue-400">
-                  Politik
-                </Link>
-              </li>
-              <li>
-                <Link to="/olahraga" className="hover:text-blue-400">
-                  Olahraga
-                </Link>
-              </li>
-              <li>
-                <Link to="/nasional" className="hover:text-blue-400">
-                  Nasional
-                </Link>
-              </li>
-              <li>
-                <Link to="/internasional" className="hover:text-blue-400">
-                  Internasional
-                </Link>
-              </li>
+              {[
+                "terbaru",
+                "hiburan",
+                "teknologi",
+                "ekonomi",
+                "olahraga",
+                "nasional",
+                "internasional",
+              ].map((type) => (
+                <li key={type}>
+                  <Link
+                    to={`#${type}`}
+                    onClick={() => handleNavClick(type)}
+                    className="hover:text-blue-400"
+                  >
+                    {type.charAt(0).toUpperCase() + type.slice(1)}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
