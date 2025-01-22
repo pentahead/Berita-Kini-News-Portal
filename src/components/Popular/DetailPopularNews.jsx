@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { getTerbaru } from "../../services/News/News";
+import LoadingScreen from "../Loading/Loading";
 
 const DetailPopularNews = () => {
   const { data, isSuccess, isLoading, isError } = useQuery({
@@ -14,16 +15,20 @@ const DetailPopularNews = () => {
     return shuffled.slice(0, 3);
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoadingScreen />;
 
   if (isError) {
-    return <div>Terjadi kesalahan saat memuat data.</div>;
+    return (
+      <div className="flex items-center justify-center">
+        Terjadi kesalahan saat memuat data.
+      </div>
+    );
   }
   const randomNews = getRandomNews();
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      <h2 className="text-xl font-bold border-l-4 border-blue-500 pl-2 mb-6">
+      <h2 className="text-xl font-bold border-l-4 border-blue-500 pl-2 mb-6 text-gray-900 dark:text-white">
         Berita Terpopuler
       </h2>
       <div className="flex flex-col space-y-6">
@@ -56,15 +61,14 @@ const DetailPopularNews = () => {
               </div>
               <div>
                 <span
-                  href="#"
-                  className="text-blue-500 text-sm font-medium hover:underline"
+                  className="text-blue-500 dark:text-blue-400 text-sm font-medium hover:underline"
                 >
                   {news.category}
                 </span>
-                <h3 className="text-sm font-semibold text-gray-800 leading-tight mt-1">
+                <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-200 leading-tight mt-1">
                   {news.title}
                 </h3>
-                <p className="text-xs text-gray-500 mt-2">
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
                   {new Date(news.pubDate).toLocaleDateString("id-ID", {
                     day: "numeric",
                     month: "long",

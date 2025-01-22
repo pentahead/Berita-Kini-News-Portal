@@ -1,12 +1,14 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { ThemeProvider } from "../context/ThemeContext";
 import Navbar from "../components/Navbar/Navbar";
 import HeroSection from "../components/Hero/Hero";
 import PopularNews from "../components/Popular/Popular";
 import Recommendations from "../components/Recommendation/Recommendation";
 import Carousel from "../components/Carousel/Carousel";
 import Footer from "../components/Footer/Footer";
+import LoadingScreen from "../components/Loading/Loading";
 import {
   getTerbaru,
   getNasional,
@@ -17,7 +19,11 @@ import {
 } from "../services/News/News";
 
 export const Route = createLazyFileRoute("/")({
-  component: () => <Index />,
+  component: () => (
+    <ThemeProvider>
+      <Index />
+    </ThemeProvider>
+  ),
 });
 
 function Index() {
@@ -46,22 +52,26 @@ function Index() {
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingScreen />;
   }
 
   if (isError) {
-    return <div>Terjadi kesalahan saat memuat berita.</div>;
+    return (
+      <div className="flex items-center justify-center">
+        Terjadi kesalahan saat memuat berita.
+      </div>
+    );
   }
 
   return (
-    <>
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
       <Navbar setNewsType={setNewsType} newsType={newsType} />
-      <HeroSection newsData={data?.data?.posts || []} />
-      <PopularNews newsData={data?.data?.posts || []} />
-      <Recommendations newsData={data?.data?.posts || []} />
+      <HeroSection newsData={data?.data?.posts || []} newsType={newsType} />
+      <PopularNews newsData={data?.data?.posts || []} newsType={newsType} />
+      <Recommendations newsData={data?.data?.posts || []} newsType={newsType} />
       <Carousel />
       <Footer />
-    </>
+    </div>
   );
 }
 

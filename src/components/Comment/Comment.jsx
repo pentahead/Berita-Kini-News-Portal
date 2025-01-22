@@ -73,7 +73,7 @@ const Comment = () => {
 
   return (
     <div className="container mx-auto p-4 my-10">
-      <h2 className="text-xl font-bold border-l-4 border-blue-500 pl-2 mb-6">
+      <h2 className="text-xl font-bold border-l-4 border-blue-500 pl-2 mb-6 text-gray-900 dark:text-white">
         Komentar
       </h2>
       <form onSubmit={handleSubmit}>
@@ -84,7 +84,7 @@ const Comment = () => {
             className="w-10 h-10 object-cover rounded-full"
           />
           <textarea
-            className="w-full border border-gray-300 p-2 rounded"
+            className="w-full dark:border-gray-600 border border-gray-300 p-2 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
             value={inputComment}
             onChange={(e) => setInputComment(e.target.value)}
             placeholder="Berikan komentar anda"
@@ -101,7 +101,7 @@ const Comment = () => {
         {Comment.map((Comment, index) => (
           <div
             key={index}
-            className="border border-gray-200 p-4 rounded mb-2 flex items-start space-x-4"
+            className="border border-gray-200 dark:border-gray-700 p-4 rounded mb-2 flex items-start space-x-4"
           >
             <div className="relative">
               <img
@@ -111,9 +111,9 @@ const Comment = () => {
               />
             </div>
             <div className="flex-1">
-              <p className="font-bold">{Comment.nama}</p>
-              <p className="text-gray-600">{Comment.waktu}</p>
-              <p>{Comment.isi}</p>
+              <p className="font-bold text-gray-900 dark:text-white">{Comment.nama}</p>
+              <p className="text-gray-600 dark:text-gray-400">{Comment.waktu}</p>
+              <p className=" text-gray-800 dark:text-gray-200">{Comment.isi}</p>
             </div>
           </div>
         ))}

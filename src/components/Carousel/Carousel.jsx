@@ -9,7 +9,7 @@ const Carousel = () => {
   const data = Array(3).fill(image);
 
   return (
-    <section className="py-8 my-10 px-2">
+    <section className="py-8 my-10 px-2 dark:bg-gray-900">
       <Swiper
         modules={[Navigation, Pagination]}
         spaceBetween={50}
@@ -37,7 +37,7 @@ const Carousel = () => {
 
       <div className="flex justify-center space-x-4 mt-4">
         <button
-          className="custom-prev text-gray-700 bg-gray-300 hover:bg-gray-400 rounded-full w-8 h-8 flex items-center justify-center"
+          className="custom-prev text-gray-700 bg-gray-300 hover:bg-gray-400 dark:text-white dark:bg-gray-700 dark:hover:bg-gray-400 rounded-full w-8 h-8 flex items-center justify-center"
           aria-label="Previous Slide"
         >
           <svg
@@ -54,7 +54,7 @@ const Carousel = () => {
           </svg>
         </button>
         <button
-          className="custom-next text-gray-700 bg-gray-300 hover:bg-gray-400 rounded-full w-8 h-8 flex items-center justify-center"
+          className="custom-next text-gray-700 bg-gray-300 hover:bg-gray-400 dark:text-white dark:bg-gray-700 dark:hover:bg-gray-400 rounded-full w-8 h-8 flex items-center justify-center"
           aria-label="Next Slide"
         >
           <svg
