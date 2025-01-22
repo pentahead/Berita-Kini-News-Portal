@@ -1,6 +1,7 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { ThemeProvider } from "../context/ThemeContext";
 import Navbar from "../components/Navbar/Navbar";
 import HeroSection from "../components/Hero/Hero";
@@ -27,7 +28,27 @@ export const Route = createLazyFileRoute("/")({
 });
 
 function Index() {
-  const [newsType, setNewsType] = useState("terbaru");
+  const queryClient = useQueryClient();
+  const [newsType, setNewsType] = useState(() => {
+    return queryClient.getQueryData(["activeNewsType"]) || "terbaru";
+  });
+
+  useEffect(() => {
+    const unsubscribe = queryClient.getQueryCache().subscribe(() => {
+      const activeType = queryClient.getQueryData(["activeNewsType"]);
+      if (activeType) {
+        setNewsType(activeType);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [queryClient]);
+
+  const handleNewsTypeChange = (type) => {
+    const normalizedType = type.toLowerCase();
+    setNewsType(normalizedType);
+    queryClient.setQueryData(["activeNewsType"], normalizedType);
+  };
 
   const fetchNews = () => {
     switch (newsType) {
@@ -49,6 +70,8 @@ function Index() {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["news", newsType],
     queryFn: fetchNews(),
+    refetchOnMount: true,
+    refetchOnWindowFocus: false,
   });
 
   if (isLoading) {
@@ -65,12 +88,12 @@ function Index() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-      <Navbar setNewsType={setNewsType} newsType={newsType} />
+      <Navbar setNewsType={handleNewsTypeChange} newsType={newsType} />
       <HeroSection newsData={data?.data?.posts || []} newsType={newsType} />
       <PopularNews newsData={data?.data?.posts || []} newsType={newsType} />
       <Recommendations newsData={data?.data?.posts || []} newsType={newsType} />
       <Carousel />
-      <Footer />
+      <Footer setNewsType={handleNewsTypeChange} />
     </div>
   );
 }
