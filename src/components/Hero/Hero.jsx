@@ -42,9 +42,9 @@ const HeroSection = ({ newsData }) => {
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center hover:bg-gray-100">
                 <div className="p-6">
-                  <h6 className="text-sm text-blue-500 font-small mb-2">
+                  <h2 className="text-sm text-blue-500 font-small mb-2">
                     Headline
-                  </h6>
+                  </h2>
                   <h2 className="text-2xl md:text-3xl font-medium mb-4">
                     {news.title}
                   </h2>

@@ -5,6 +5,7 @@ import { useNavigate, Link } from "@tanstack/react-router";
 
 export default function Navbar({ setNewsType, newsType }) {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +24,7 @@ export default function Navbar({ setNewsType, newsType }) {
 
   const handleNavClick = (type) => {
     setNewsType(type);
+    setIsMobileMenuOpen(false);
     navigate({ to: "/" });
   };
 
@@ -62,28 +64,59 @@ export default function Navbar({ setNewsType, newsType }) {
             Berita Kini
           </span>
         </Link>
-        <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1">
-          <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:border-gray-700">
-            {[
-              "terbaru",
-              "hiburan",
-              "teknologi",
-              "ekonomi",
-              "olahraga",
-              "nasional",
-              "internasional",
-            ].map((type) => (
-              <li key={type}>
-                <Link
-                  to="#"
-                  onClick={() => handleNavClick(type)}
-                  className={getLinkClassNames(type)}
-                >
-                  {type.charAt(0).toUpperCase() + type.slice(1)}
-                </Link>
-              </li>
-            ))}
-          </ul>
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          type="button"
+          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+          aria-controls="navbar-sticky"
+          aria-expanded={isMobileMenuOpen}
+        >
+          <span className="sr-only">Buka menu utama</span>
+          <svg
+            className={`w-5 h-5 ${isScrolled ? "text-white" : "text-gray-800"}`}
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 17 14"
+          >
+            <path
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M1 1h15M1 7h15M1 13h15"
+            />
+          </svg>
+        </button>
+
+        {/* Menu Desktop dan Mobile */}
+        <div
+          className={`${
+            isMobileMenuOpen ? "block" : "hidden"
+          } w-full md:block md:w-auto md:order-1`}
+          id="navbar-sticky"
+        >
+            <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:border-gray-700">
+              {[
+                "terbaru",
+                "hiburan",
+                "teknologi",
+                "ekonomi",
+                "olahraga",
+                "nasional",
+                "internasional",
+              ].map((type) => (
+                <li key={type}>
+                  <Link
+                    to={`#${type}`}
+                    onClick={() => handleNavClick(type)}
+                    className={getLinkClassNames(type)}
+                  >
+                    {type.charAt(0).toUpperCase() + type.slice(1)}
+                  </Link>
+                </li>
+              ))}
+            </ul>
         </div>
       </div>
     </nav>

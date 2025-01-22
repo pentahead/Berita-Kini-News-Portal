@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { getTerbaru } from "../../services/News/News";
+import LoadingScreen from "../Loading/Loading";
 
 const Terkait = () => {
   const { data, isSuccess, isLoading, isError } = useQuery({
@@ -14,10 +15,14 @@ const Terkait = () => {
     return shuffled.slice(0, 3);
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoadingScreen />;
 
   if (isError) {
-    return <div>Terjadi kesalahan saat memuat data.</div>;
+    return (
+      <div className="flex items-center justify-center">
+        Terjadi kesalahan saat memuat data.
+      </div>
+    );
   }
   const randomNews = getRandomNews();
   return (

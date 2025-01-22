@@ -1,6 +1,5 @@
-
-
 ﻿﻿﻿<p align="right">:sparkles:"Get to know the world now!":sparkles:</p>
+
 <h1 align="center">Berita Kini </h1>
 <p align="center">
 
@@ -10,33 +9,17 @@
 
 <img src="./mockups/1.jpeg" alt="preview">
 
-
-
-Account:
-
-```bash
-admin
-```
-```bash
-password
-```
-
-
 ## 🎯 Project Goal
-
 
 ## 🚩 MVP
 
-
-| Feature                                                             | Status |
-| ------------------------------------------------------------------- | ------ |
-| Pure Taillwind CSS| ✅     |
-| Filter: Search by keyword| ✅     |
-| Pagination| ✅     |
-| CRUD using IndexDB                                                          | ✅     |
-| Themes: Light, Dark and OS Macthing Mode                                                      | ✅     |
-
-
+| Feature                                  | Status |
+| ---------------------------------------- | ------ |
+| Pure Taillwind CSS                       | ✅     |
+| Filter: Search by keyword                | ✅     |
+| Pagination                               | ✅     |
+| CRUD using IndexDB                       | ✅     |
+| Themes: Light, Dark and OS Macthing Mode | ✅     |
 
 ## 💻 Technology That We Used
 
@@ -47,12 +30,9 @@ password
 
 - ![React Tanstack Router](https://img.shields.io/badge/-React%20Tanstack%20Router-0078D4?logo=react&logoColor=white&style=for-the-badge)
 
-
 ### Styling:
 
-
 - ![Tailwind CSS](https://img.shields.io/badge/-Tailwind%20CSS-38B2AC?logo=tailwind-css&logoColor=white&style=for-the-badge)
-
 
 ### Utility Tech Stack:
 
@@ -63,14 +43,10 @@ password
 
 - ![Vercel](https://img.shields.io/badge/-Vercel-000000?logo=vercel&logoColor=white&style=for-the-badge)
 
-
-
-
 ## 🌐 Demo Link
 
 You can see the demo of this project here:
 
-- [Berita Kini | Your Updatest News Portal!](#)
+- [Berita Kini | Your Updatest News Portal!](https://berita-kini-iota.vercel.app/)
 
 make sure to use the latest version of your browser.
-

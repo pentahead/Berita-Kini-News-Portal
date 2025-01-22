@@ -3,14 +3,22 @@ import DetailPopularNews from "../Popular/DetailPopularNews";
 import Comment from "../Comment/Comment";
 
 function DetailNews({ newsData }) {
-  if (!newsData) return <div>Berita tidak ditemukan</div>;
+  if (!newsData)
+    return (
+      <div className="flex items-center justify-center">
+        Berita tidak ditemukan
+      </div>
+    );
   return (
     <>
       <div className="max-w-7xl mx-auto px-4 py-20">
         <nav className="flex mb-8" aria-label="Breadcrumb">
           <ol className="inline-flex items-center space-x-2">
             <li className="inline-flex items-center">
-              <Link href="/" className="text-gray-600 hover:text-blue-500 flex space-x-2 items-center">
+              <Link
+                href="/"
+                className="text-gray-600 hover:text-blue-500 flex space-x-2 items-center"
+              >
                 <span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -21,10 +29,7 @@ function DetailNews({ newsData }) {
                     <path d="M8.543 2.232a.75.75 0 0 0-1.085 0l-5.25 5.5A.75.75 0 0 0 2.75 9H4v4a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1a1 1 0 1 1 2 0v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V9h1.25a.75.75 0 0 0 .543-1.268l-5.25-5.5Z" />
                   </svg>
                 </span>
-                <span>
-
-                Beranda
-                </span>
+                <span>Beranda</span>
               </Link>
             </li>
             <li className="flex items-center">

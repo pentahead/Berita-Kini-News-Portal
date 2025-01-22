@@ -6,7 +6,12 @@ const Recommendations = ({ newsData }) => {
   const [searchKeyword, setSearchKeyword] = useState("");
   const itemsPerPage = 8;
 
-  if (!newsData.length) return <div>Tidak ada berita untuk ditampilkan.</div>;
+  if (!newsData.length)
+    return (
+      <div className="flex items-center justify-center">
+        Tidak ada berita untuk ditampilkan.
+      </div>
+    );
 
   const filteredNews = newsData.filter((news) => {
     const keyword = searchKeyword.toLowerCase();
@@ -79,8 +84,7 @@ const Recommendations = ({ newsData }) => {
               pubDate: news.pubDate,
               description: news.description,
             }}
-           className="block hover:shadow-lg transition-shadow duration-200"
-
+            className="block hover:shadow-lg transition-shadow duration-200"
           >
             <div className="bg-white rounded-lg shadow-md overflow-hidden h-64 flex flex-col">
               <div className="w-full h-32 overflow-hidden">

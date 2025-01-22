@@ -9,7 +9,12 @@ const PopularNews = ({ newsData }) => {
 
   const randomNews = getRandomNews();
 
-  if (!randomNews.length) return <div>Tidak ada berita untuk ditampilkan.</div>;
+  if (!randomNews.length)
+    return (
+      <div className="flex items-center justify-center">
+        Tidak ada berita untuk ditampilkan.
+      </div>
+    );
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
@@ -27,27 +32,26 @@ const PopularNews = ({ newsData }) => {
               pubDate: news.pubDate,
               description: news.description,
             }}
-           className="block hover:shadow-lg transition-shadow duration-200"
-
+            className="block hover:shadow-lg transition-shadow duration-200"
           >
-            <div key={news.id} className="flex items-start space-x-4  bg-white rounded-lg shadow-md overflow-hidden">
+            <div
+              key={news.id}
+              className="flex items-start space-x-4  bg-white rounded-lg shadow-md overflow-hidden"
+            >
               <div className="relative">
                 <img
                   src={news.thumbnail}
                   alt={news.title}
-                   className="rounded-lg w-48 h-32 object-cover"
+                  className="rounded-lg w-48 h-32 object-cover"
                 />
                 <span className="absolute top-0 left-0 bg-blue-900 text-white text-sm w-6 h-6 rounded-full flex items-center justify-center">
                   {index + 1}
                 </span>
               </div>
               <div className="flex-1">
-                <a
-                  href="#"
-                  className="text-blue-500 text-sm font-medium hover:underline"
-                >
+                <span className="text-blue-500 text-sm font-medium hover:underline">
                   {news.category}
-                </a>
+                </span>
                 <h3 className="text-sm font-semibold text-gray-800 leading-tight mt-1">
                   {news.title}
                 </h3>

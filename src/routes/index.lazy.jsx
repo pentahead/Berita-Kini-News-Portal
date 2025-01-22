@@ -7,6 +7,7 @@ import PopularNews from "../components/Popular/Popular";
 import Recommendations from "../components/Recommendation/Recommendation";
 import Carousel from "../components/Carousel/Carousel";
 import Footer from "../components/Footer/Footer";
+import LoadingScreen from "../components/Loading/Loading";
 import {
   getTerbaru,
   getNasional,
@@ -46,11 +47,15 @@ function Index() {
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingScreen />;
   }
 
   if (isError) {
-    return <div>Terjadi kesalahan saat memuat berita.</div>;
+    return (
+      <div className="flex items-center justify-center">
+        Terjadi kesalahan saat memuat berita.
+      </div>
+    );
   }
 
   return (
