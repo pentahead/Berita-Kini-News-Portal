@@ -89,6 +89,7 @@ Run the development server to start the application:
 npm run dev
 ```
 OR
+cc
 ```bash
 yarn dev
 ```
